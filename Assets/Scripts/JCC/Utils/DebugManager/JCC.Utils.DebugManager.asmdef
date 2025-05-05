@@ -1,0 +1,16 @@
+{
+    "name": "JCC.Utils.DebugManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:11f1f5b1cd6f8004f91a901960baa375"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
