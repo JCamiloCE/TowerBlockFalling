@@ -1,0 +1,18 @@
+{
+    "name": "JCC.Utils.Blocks",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4e4b9730e4362904c8607afa15af7f98",
+        "GUID:9e5a28d474808df4497a17365b1b23bb",
+        "GUID:6e959e1b4ffd0ef499d8db0dbbc79a1e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
