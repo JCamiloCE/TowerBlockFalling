@@ -1,19 +1,17 @@
-using UnityEngine;
+using Scripts.Blocks;
 
-public class MovementImpl_Fake : IMovement
+namespace UnitTest.EditoModeTests.Blocks 
 {
-    public bool IsMoving()
+    public class MovementImpl_Fake : IMovement
     {
-        throw new System.NotImplementedException();
-    }
+        public void StartMovement()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    public void StartMovement()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void StopMovement()
-    {
-        throw new System.NotImplementedException();
+        public void StopMovement()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,9 @@
-public interface IMovement
-{
-    public bool IsMoving();
-    public void StartMovement();
-    public void StopMovement();
+namespace Scripts.Blocks
+{ 
+    public interface IMovement
+    {
+        public void StartMovement();
+        public void StopMovement();
+    }
 }
+

@@ -1,12 +1,10 @@
-using JCC.Utils.Pool;
 using UnityEngine;
 
-public class BlockController : MonoBehaviour, IPoolResettable
+namespace Scripts.Blocks 
 {
-    #region Pool
-    void IPoolResettable.ResetPoolObject()
+    public class BlockController : MonoBehaviour
     {
-        throw new System.NotImplementedException();
+        
     }
-    #endregion Pool
 }
+

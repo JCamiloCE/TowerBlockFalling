@@ -1,50 +1,55 @@
 using JCC.Utils.DebugManager;
 using NUnit.Framework;
+using Scripts.Blocks;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class BlockMovement_UnitTests
+namespace UnitTest.EditoModeTests.Blocks
 {
-    [SetUp]
-    public void SetUp() 
+    public class BlockMovement_UnitTests
     {
-        DebugManager.Initialization(new DebugUnityImpl(), EDebugScope.All);
-    }
+        [SetUp]
+        public void SetUp() 
+        {
+            DebugManager.Initialization(new DebugUnityImpl(), EDebugScope.All);
+        }
 
-    [TearDown]
-    public void TearDown() 
-    {
-        DebugManager.Debug__ResetDebugManager();
-    }
+        [TearDown]
+        public void TearDown() 
+        {
+            DebugManager.Debug__ResetDebugManager();
+        }
 
-    [Test]
-    public void Initialization_NullMovement_ErrorAndNotInitilized() 
-    {
-        //Arrange
-        BlockMovement blockMovement = new GameObject("BlockMovement").AddComponent<BlockMovement>();
-        IMovement movement = null;
+        [Test]
+        public void Initialization_NullMovement_ErrorAndNotInitilized() 
+        {
+            //Arrange
+            BlockMovement blockMovement = new GameObject("BlockMovement").AddComponent<BlockMovement>();
+            IMovement movement = null;
 
-        //Act
-        bool result = blockMovement.Initialization(movement);
+            //Act
+            bool result = blockMovement.Initialization(movement);
 
-        //Assert
-        LogAssert.Expect(LogType.Error, "BlockMovement.SetMovement :: movement is null");
-        Assert.IsFalse(result);
-        Assert.IsFalse(blockMovement.WasInitialized());
-    }
+            //Assert
+            LogAssert.Expect(LogType.Error, "BlockMovement.SetMovement :: movement is null");
+            Assert.IsFalse(result);
+            Assert.IsFalse(blockMovement.WasInitialized());
+        }
 
-    [Test]
-    public void Initialization_CorrectMovement_IsInitilized()
-    {
-        //Arrange
-        BlockMovement blockMovement = new GameObject("BlockMovement").AddComponent<BlockMovement>();
-        IMovement movement = new MovementImpl_Fake();
+        [Test]
+        public void Initialization_CorrectMovement_IsInitilized()
+        {
+            //Arrange
+            BlockMovement blockMovement = new GameObject("BlockMovement").AddComponent<BlockMovement>();
+            IMovement movement = new MovementImpl_Fake();
 
-        //Act
-        bool result = blockMovement.Initialization(movement);
+            //Act
+            bool result = blockMovement.Initialization(movement);
 
-        //Assert
-        Assert.IsTrue(result);
-        Assert.IsTrue(blockMovement.WasInitialized());
+            //Assert
+            Assert.IsTrue(result);
+            Assert.IsTrue(blockMovement.WasInitialized());
+        }
     }
 }
+

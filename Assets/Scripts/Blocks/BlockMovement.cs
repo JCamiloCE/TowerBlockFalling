@@ -2,38 +2,69 @@ using JCC.Utils.DebugManager;
 using JCC.Utils.LifeCycle;
 using UnityEngine;
 
-public class BlockMovement : MonoBehaviour, ILifeCycle
+namespace Scripts.Blocks 
 {
-    private IMovement _movement;
-    private bool _wasInitialized;
-
-    #region ILifeCycle
-    public bool WasInitialized() => _wasInitialized;
-
-    public bool Initialization(params object[] parameters)
+    public class BlockMovement : MonoBehaviour, ILifeCycle
     {
-        _wasInitialized = true;
-        _wasInitialized = _wasInitialized && SetMovement(parameters[0] as IMovement);
-        return _wasInitialized;
-    }
-    #endregion ILifeCycle
+        private IMovement _movement;
+        private bool _wasInitialized;
 
-    #region public
-    #endregion public
+        #region ILifeCycle
+        public bool WasInitialized() => _wasInitialized;
 
-    #region internal
-    internal bool SetMovement(IMovement movement) 
-    {
-        if (movement == null)
+        public bool Initialization(params object[] parameters)
         {
-            DebugManager.LogError("BlockMovement.SetMovement :: movement is null");
-            return false;
+            _wasInitialized = true;
+            _wasInitialized = _wasInitialized && SetMovement(parameters[0] as IMovement);
+            return _wasInitialized;
         }
-        _movement = movement;
-        return true;
-    }
-    #endregion internal
+        #endregion ILifeCycle
 
-    #region public
-    #endregion public
+        #region public
+        #endregion public
+
+        #region internal
+        internal bool SetMovement(IMovement movement)
+        {
+            if (movement == null)
+            {
+                DebugManager.LogError("BlockMovement.SetMovement :: movement is null");
+                return false;
+            }
+            _movement = movement;
+            return true;
+        }
+
+        internal void StartMovement() 
+        {
+            if (!HasValidConfiguration())
+                return;
+            _movement.StartMovement();
+        }
+
+        internal void StopMovement()
+        {
+            if (!HasValidConfiguration())
+                return;
+            _movement.StopMovement();
+        }
+        #endregion internal
+
+        #region private
+        private bool HasValidConfiguration() 
+        {
+            if (_movement == null)
+            {
+                DebugManager.LogError("BlockMovement.HasValidConfiguration :: movement is null");
+                return false;
+            }
+            if (!WasInitialized()) 
+            {
+                DebugManager.LogError("BlockMovement.HasValidConfiguration :: was not initialized");
+                return false;
+            }
+            return true;
+        }
+        #endregion private
+    }
 }
