@@ -1,3 +1,4 @@
+using JCC.Utils.LifeCycle;
 using UnityEngine;
 
 namespace Scripts.Blocks
@@ -14,11 +15,22 @@ namespace Scripts.Blocks
 
         private float _currentAngle = 0f;
         private bool _isMoving = false;
+        private bool _wasInitialized = false;
+
+        #region ILifeCycle
+        public bool WasInitialized() => _wasInitialized;
+
+        public bool Initialization(params object[] parameters)
+        {
+            SetInitialValues();
+            _wasInitialized = true;
+            return _wasInitialized;
+        }
+        #endregion ILifeCycle
 
         #region IMovement
         public void StartMovement()
         {
-            _lineRenderer.positionCount = 2;
             _isMoving = true;
         }
 
@@ -33,24 +45,32 @@ namespace Scripts.Blocks
         {
             if (_isMoving)
             {
-                /*currentAngle += _angularSpeed * Time.deltaTime;
-                if (currentAngle >= 360f) currentAngle -= 360f;
-
-                float radians = currentAngle * Mathf.Deg2Rad;
-
-                Vector3 offset = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0) * _radius;
-                _blockToMove.position = _pivotPoint.position + offset;*/
-
-                _currentAngle += _angularSpeed * Time.deltaTime;
-
-                float x = Mathf.Cos(_currentAngle) * _radiusX;
-                float y = Mathf.Sin(_currentAngle) * _radiusY;
-
-                _blockToMove.position = _pivotPoint.position + new Vector3(x, -y, 0);
-
-                _lineRenderer.SetPosition(0, _hook.position);
-                _lineRenderer.SetPosition(1, _blockToMove.position);
+                _blockToMove.position = GetNewPosition();
+                SetPositionsInLineRender();
             }
+        }
+
+        private Vector3 GetNewPosition() 
+        {
+            _currentAngle += _angularSpeed * Time.deltaTime;
+
+            float x = Mathf.Cos(_currentAngle) * _radiusX;
+            float y = Mathf.Sin(_currentAngle) * _radiusY;
+
+            return _pivotPoint.position + new Vector3(x, -y, 0);
+        }
+
+        private void SetInitialValues() 
+        {
+            _lineRenderer.positionCount = 2;
+            SetPositionsInLineRender();
+            _isMoving = false;
+        }
+
+        private void SetPositionsInLineRender() 
+        {
+            _lineRenderer.SetPosition(0, _hook.position);
+            _lineRenderer.SetPosition(1, _blockToMove.position);
         }
         #endregion private
     }

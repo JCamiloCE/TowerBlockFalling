@@ -5,10 +5,10 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Utils.Random",
-        "Utils.Pool",
         "JCC.Utils.GameplayEventSystem",
         "JCC.Utils.DebugManager",
-        "JCC.Utils.Blocks"
+        "JCC.Utils.Blocks",
+        "JCC.Utils.LifeCycle"
     ],
     "includePlatforms": [
         "Editor"

@@ -9,7 +9,7 @@ namespace Scripts.Blocks
         private void Start()
         {
             _blockMovement = GetComponent<IMovement>();
-
+            _blockMovement.Initialization();
             _blockMovement.StartMovement();
         }
     }
