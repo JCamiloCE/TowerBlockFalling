@@ -1,4 +1,3 @@
-using JCC.Utils.LifeCycle;
 using UnityEngine;
 
 namespace Scripts.Blocks
@@ -16,8 +15,13 @@ namespace Scripts.Blocks
         private float _currentAngle = 0f;
         private bool _isMoving = false;
         private bool _wasInitialized = false;
+        private Vector3 _previousPosition;
 
-        #region ILifeCycle
+        public float minValue;
+        public float maxValue;
+        public float delta;
+
+        #region IMovement
         public bool WasInitialized() => _wasInitialized;
 
         public bool Initialization(params object[] parameters)
@@ -26,9 +30,6 @@ namespace Scripts.Blocks
             _wasInitialized = true;
             return _wasInitialized;
         }
-        #endregion ILifeCycle
-
-        #region IMovement
         public void StartMovement()
         {
             _isMoving = true;
@@ -46,6 +47,13 @@ namespace Scripts.Blocks
             if (_isMoving)
             {
                 _blockToMove.position = GetNewPosition();
+
+                Vector3 direction = _blockToMove.position - _previousPosition;
+                float angleZ = Mathf.Clamp(-direction.x * delta, minValue, maxValue);
+
+                _blockToMove.rotation = Quaternion.Euler(0, 0, angleZ);
+
+                _previousPosition = _blockToMove.position;
                 SetPositionsInLineRender();
             }
         }
