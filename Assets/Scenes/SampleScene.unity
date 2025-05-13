@@ -657,11 +657,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakeObj: {fileID: 330585546}
-  _minXShake: -0.1
-  _maxXShake: 0.1
-  _minYShake: -0.1
-  _maxYShake: 0.1
-  _shakeTime: 0.15
+  _minXShake: -0.05
+  _maxXShake: 0.05
+  _minYShake: -0.05
+  _maxYShake: 0.05
+  _shakeTime: 0.1
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,13 +924,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radiusX: 1
   _radiusY: 0.5
-  _angularSpeed: 2.5
+  _angularSpeed: 2
   _pivotPoint: {fileID: 1755095953}
   _blockToMove: {fileID: 1212539794}
   _hook: {fileID: 78497349}
   _lineRenderer: {fileID: 1154833236}
-  minValue: -10
-  maxValue: 10
+  minValue: -30
+  maxValue: 30
   delta: 1000
 --- !u!114 &1112466904
 MonoBehaviour:
