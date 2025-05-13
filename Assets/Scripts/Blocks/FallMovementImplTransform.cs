@@ -11,6 +11,7 @@ namespace Scripts.Blocks
         [SerializeField] private float _deltaSize = 0.5f;
         [SerializeField] private Transform _blockToMove = null;
         [SerializeField] private Transform _target = null;
+
         private bool _wasInitialized = false;
         private Coroutine _fallingMovement = null;
 
@@ -23,7 +24,6 @@ namespace Scripts.Blocks
             _wasInitialized = true;
             return _wasInitialized;
         }
-        
 
         public void StartFalling()
         {

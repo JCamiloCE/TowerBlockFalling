@@ -47,13 +47,7 @@ namespace Scripts.Blocks
             if (_isMoving)
             {
                 _blockToMove.position = GetNewPosition();
-
-                Vector3 direction = _blockToMove.position - _previousPosition;
-                float angleZ = Mathf.Clamp(-direction.x * delta, minValue, maxValue);
-
-                _blockToMove.rotation = Quaternion.Euler(0, 0, angleZ);
-
-                _previousPosition = _blockToMove.position;
+                _blockToMove.rotation = GetNewRotation();
                 SetPositionsInLineRender();
             }
         }
@@ -66,6 +60,15 @@ namespace Scripts.Blocks
             float y = Mathf.Sin(_currentAngle) * _radiusY;
 
             return _pivotPoint.position + new Vector3(x, -y, 0);
+        }
+
+        private Quaternion GetNewRotation() 
+        {
+            Vector3 direction = _blockToMove.position - _previousPosition;
+            float angleZ = Mathf.Clamp(-direction.x * delta, minValue, maxValue);
+            _previousPosition = _blockToMove.position;
+
+            return Quaternion.Euler(0, 0, angleZ);
         }
 
         private void SetInitialValues() 

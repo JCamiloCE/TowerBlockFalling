@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ResetScene_Testing : MonoBehaviour
+namespace Scripts.Testing 
 {
-    public void ResetScene() 
+    public class ResetScene_Testing : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        public void ResetScene() 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
