@@ -44,7 +44,7 @@ namespace Scripts.Blocks
         #region private
         private void Update()
         {
-            if (_isMoving)
+            if (_isMoving && WasInitialized())
             {
                 _blockToMove.position = GetNewPosition();
                 _blockToMove.rotation = GetNewRotation();

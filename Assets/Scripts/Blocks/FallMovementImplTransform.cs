@@ -27,8 +27,11 @@ namespace Scripts.Blocks
 
         public void StartFalling()
         {
-            StopFallingMovement();
-            _fallingMovement = StartCoroutine(FallingMovement());
+            if (WasInitialized())
+            { 
+                StopFallingMovement();
+                _fallingMovement = StartCoroutine(FallingMovement());
+            }
         }
         #endregion IFallMovement
 
