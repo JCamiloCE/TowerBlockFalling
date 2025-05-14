@@ -1,3 +1,4 @@
+using JCC.Utils.DebugManager;
 using JCC.Utils.GameplayEventSystem;
 using Scripts.GameplayEvents;
 using System.Collections;
@@ -9,9 +10,9 @@ namespace Scripts.Blocks
     {
         [SerializeField] private float _fallingTime = 2f;
         [SerializeField] private float _deltaSize = 0.5f;
-        [SerializeField] private Transform _blockToMove = null;
         [SerializeField] private Transform _target = null;
 
+        private Transform _blockToMove = null;
         private bool _wasInitialized = false;
         private Coroutine _fallingMovement = null;
 
@@ -21,12 +22,19 @@ namespace Scripts.Blocks
         public bool Initialization(params object[] parameters)
         {
             _fallingMovement = null;
+            _blockToMove = null;
             _wasInitialized = true;
             return _wasInitialized;
         }
 
-        public void StartFalling()
+        public void StartFalling(Transform newFallingObject)
         {
+            if (newFallingObject == null)
+            {
+                DebugManager.LogError("FallMovementImplTransform::StartFalling -> newFallingObject is null");
+                return;
+            }
+            _blockToMove = newFallingObject;
             if (WasInitialized())
             { 
                 StopFallingMovement();
@@ -60,7 +68,7 @@ namespace Scripts.Blocks
                 yield return null;
             }
             _blockToMove.position = currentTarget;
-            EventManager.TriggerEvent<StartShakeEffectEvent>();
+            EventManager.TriggerEvent<FinishFallingBlockEvent>();
             _fallingMovement = null;
         }
         #endregion

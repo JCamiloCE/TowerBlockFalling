@@ -1,4 +1,5 @@
 using JCC.Utils.LifeCycle;
+using UnityEngine;
 
 namespace Scripts.Blocks
 { 
@@ -6,6 +7,7 @@ namespace Scripts.Blocks
     {
         public void StartMovement();
         public void StopMovement();
+        public void SetNewChildToMove(Transform newChildToMove);
     }
 }
 

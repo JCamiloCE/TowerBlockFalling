@@ -1,3 +1,4 @@
+using JCC.Utils.DebugManager;
 using UnityEngine;
 
 namespace Scripts.Blocks
@@ -38,6 +39,18 @@ namespace Scripts.Blocks
         public void StopMovement()
         {
             _isMoving = false;
+        }
+
+        public void SetNewChildToMove(Transform newChildToMove)
+        {
+            if (newChildToMove == null)
+            {
+                DebugManager.LogError("FallMovementImplTransform::SetNewChildToMove -> newChildToMove is null");
+                return;
+            }
+            newChildToMove.SetParent(_blockToMove);
+            newChildToMove.localPosition = Vector3.zero;
+            newChildToMove.localRotation = Quaternion.identity;
         }
         #endregion IMovement
 
