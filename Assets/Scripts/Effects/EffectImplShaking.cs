@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Effects
 {
-    public class EffectImplShaking : MonoBehaviour, IEffect, IEventListener<StartShakeEffectEvent>
+    public class EffectImplShaking : MonoBehaviour, IEffect, IEventListener<FinishFallingBlockEvent>
     {
         [SerializeField] private Transform _shakeObj = null;
         [SerializeField] private float _minXShake = 2f;
@@ -27,7 +27,7 @@ namespace Scripts.Effects
         #endregion
 
         #region IEventListener
-        public void OnEvent(StartShakeEffectEvent event_data)
+        public void OnEvent(FinishFallingBlockEvent event_data)
         {
             StartEffect();
         }

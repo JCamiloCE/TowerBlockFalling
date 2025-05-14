@@ -8,6 +8,7 @@ namespace JCC.Utils.Pool
     {
         private bool _expandPool = false;
         private GameObject _initialPoolObject = null;
+        private Transform _parentPool;
         private List<PoolObject> _poolObjects = null;
         private List<TType> _poolSpecificObjects = null;
 
@@ -27,6 +28,7 @@ namespace JCC.Utils.Pool
             if (initialPoolObject.GetComponent<TType>() == null)
                 throw new ArgumentException("initialPoolObject doesnt have the " + nameof(TType), "initialPoolObject");
 
+            _parentPool = new GameObject("Pool-" + _initialPoolObject.name).transform;
             for (int i = 0; i < poolSize; i++)
             {
                 AddNewElementIntoThePool(_initialPoolObject);
@@ -59,6 +61,7 @@ namespace JCC.Utils.Pool
             {
                 int index = _poolSpecificObjects.IndexOf(newPoolObj);
                 _poolObjects[index].ReturnPoolObject();
+                _poolObjects[index].transform.SetParent(_parentPool);
             }
             else
                 throw new ArgumentException("newPoolObj ", "newPoolObj");
@@ -67,6 +70,7 @@ namespace JCC.Utils.Pool
         private void AddNewElementIntoThePool(GameObject initialPoolObject) 
         {
             PoolObject newPoolObj = CreateNewPoolObject(initialPoolObject);
+            newPoolObj.transform.SetParent(_parentPool);
             _poolObjects.Add(newPoolObj);
             _poolSpecificObjects.Add(newPoolObj.GetComponent<TType>());
         }
