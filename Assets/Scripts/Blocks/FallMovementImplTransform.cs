@@ -10,11 +10,15 @@ namespace Scripts.Blocks
     {
         [SerializeField] private float _fallingTime = 2f;
         [SerializeField] private float _deltaSize = 0.5f;
+        [SerializeField] private float _distanceToFit = 0.5f;
+        [SerializeField] private float _forceWhenNotFit = 5f;
         [SerializeField] private Transform _target = null;
 
         private Transform _blockToMove = null;
         private bool _wasInitialized = false;
         private Coroutine _fallingMovement = null;
+        private Coroutine _deactivateBlock = null;
+        private bool _firstInFall = true;
 
         #region IFallMovement
         public bool WasInitialized() => _wasInitialized;
@@ -23,6 +27,7 @@ namespace Scripts.Blocks
         {
             _fallingMovement = null;
             _blockToMove = null;
+            _firstInFall = true;
             _wasInitialized = true;
             return _wasInitialized;
         }
@@ -68,8 +73,47 @@ namespace Scripts.Blocks
                 yield return null;
             }
             _blockToMove.position = currentTarget;
-            EventManager.TriggerEvent<FinishFallingBlockEvent>();
+            FitWithTheTarget();
+            _firstInFall = false;
             _fallingMovement = null;
+        }
+
+        private void FitWithTheTarget() 
+        {
+            Vector3 targetPos = new Vector3(_target.position.x, _target.position.y + _deltaSize, _target.position.z);
+            float currentDistance = Vector3.Distance(_blockToMove.position, targetPos);
+            bool fit = currentDistance <= _distanceToFit;
+            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, _blockToMove.position);
+            if (_firstInFall == false && fit == false) 
+            {
+                ReleaseObject(currentDistance);
+            }
+        }
+
+        private void ReleaseObject(float distance) 
+        {
+            Debug.Log("ReleaseObject: ");
+            Rigidbody rg = _blockToMove.GetComponent<Rigidbody>();
+            rg.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            rg.useGravity = true;
+            rg.AddForce(Vector3.down * _forceWhenNotFit * distance, ForceMode.Impulse);
+            StopDeactivateBlock();
+            _deactivateBlock = StartCoroutine(DeactivateBlock(_blockToMove));
+        }
+
+        private void StopDeactivateBlock()
+        {
+            if (_fallingMovement != null)
+            {
+                StopCoroutine(_fallingMovement);
+            }
+            _fallingMovement = null;
+        }
+
+        private IEnumerator DeactivateBlock(Transform block)
+        {
+            yield return new WaitForSeconds(1);
+            block.gameObject.SetActive(false);
         }
         #endregion
     }

@@ -12,15 +12,14 @@ namespace Scripts.Blocks
         [SerializeField] private Transform _blockToMove = null;
         [SerializeField] private Transform _hook;
         [SerializeField] private LineRenderer _lineRenderer = null;
+        [SerializeField] private float _minValue;
+        [SerializeField] private float _maxValue;
+        [SerializeField] private float _delta;
 
         private float _currentAngle = 0f;
         private bool _isMoving = false;
         private bool _wasInitialized = false;
         private Vector3 _previousPosition;
-
-        public float minValue;
-        public float maxValue;
-        public float delta;
 
         #region IMovement
         public bool WasInitialized() => _wasInitialized;
@@ -78,7 +77,7 @@ namespace Scripts.Blocks
         private Quaternion GetNewRotation() 
         {
             Vector3 direction = _blockToMove.position - _previousPosition;
-            float angleZ = Mathf.Clamp(-direction.x * delta, minValue, maxValue);
+            float angleZ = Mathf.Clamp(-direction.x * _delta * Time.deltaTime, _minValue, _maxValue);
             _previousPosition = _blockToMove.position;
 
             return Quaternion.Euler(0, 0, angleZ);
