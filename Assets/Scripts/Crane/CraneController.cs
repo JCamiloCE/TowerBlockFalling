@@ -22,15 +22,16 @@ namespace Scripts.Crane
         #region IEventListener
         public void OnEvent(FinishFallingBlockEvent event_data)
         {
-            _currentBlockIndex++;
-            if (_currentBlockIndex > 2)
+            if (event_data.correctFalling) 
             {
-                _craneMovement.MoveUp();
+                _currentBlockIndex++;
+                if (_currentBlockIndex > 2)
+                {
+                    _craneMovement.MoveUp();
+                    return;
+                }
             }
-            else 
-            {
-                SetNewBlockToTheCrane();
-            }
+            SetNewBlockToTheCrane();
         }
         #endregion
 
