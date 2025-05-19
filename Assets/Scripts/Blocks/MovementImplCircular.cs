@@ -1,4 +1,5 @@
 using JCC.Utils.DebugManager;
+using System;
 using UnityEngine;
 
 namespace Scripts.Blocks
@@ -59,7 +60,7 @@ namespace Scripts.Blocks
             if (_isMoving && WasInitialized())
             {
                 _blockToMove.position = GetNewPosition();
-                _blockToMove.rotation = GetNewRotation();
+                _blockToMove.rotation *= GetNewScalarRotation();
                 SetPositionsInLineRender();
             }
         }
@@ -74,13 +75,11 @@ namespace Scripts.Blocks
             return _pivotPoint.position + new Vector3(x, -y, 0);
         }
 
-        private Quaternion GetNewRotation() 
+        private Quaternion GetNewScalarRotation() 
         {
             Vector3 direction = _blockToMove.position - _previousPosition;
-            float angleZ = Mathf.Clamp(-direction.x * _delta * Time.deltaTime, _minValue, _maxValue);
-            _previousPosition = _blockToMove.position;
-
-            return Quaternion.Euler(0, 0, angleZ);
+            float angle = Math.Sign(direction.x) * _delta * Time.deltaTime;
+            return Quaternion.Euler(0f, 0f, angle);
         }
 
         private void SetInitialValues() 
