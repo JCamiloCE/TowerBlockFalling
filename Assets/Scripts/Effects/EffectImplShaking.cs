@@ -31,7 +31,7 @@ namespace Scripts.Effects
         {
             StartEffect();
         }
-        #endregion
+        #endregion IEffect
 
         #region private
         private void Start()
@@ -68,6 +68,6 @@ namespace Scripts.Effects
             }
             _shakeObj.position = initialPos;
         }
-        #endregion
+        #endregion private
     }
 }

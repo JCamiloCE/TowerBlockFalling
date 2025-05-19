@@ -2,8 +2,5 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public class BlockMonobehavior : MonoBehaviour
-    {
-        
-    }
+    public class BlockMonobehavior : MonoBehaviour { }
 }

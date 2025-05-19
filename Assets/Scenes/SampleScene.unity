@@ -885,9 +885,7 @@ MonoBehaviour:
   _blockToMove: {fileID: 1746343563}
   _hook: {fileID: 78497349}
   _lineRenderer: {fileID: 1154833236}
-  _minValue: -30
-  _maxValue: 30
-  _delta: 12
+  _speedRotation: 12
 --- !u!114 &1112466904
 MonoBehaviour:
   m_ObjectHideFlags: 0

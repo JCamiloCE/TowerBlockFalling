@@ -13,9 +13,7 @@ namespace Scripts.Blocks
         [SerializeField] private Transform _blockToMove = null;
         [SerializeField] private Transform _hook;
         [SerializeField] private LineRenderer _lineRenderer = null;
-        [SerializeField] private float _minValue;
-        [SerializeField] private float _maxValue;
-        [SerializeField] private float _delta;
+        [SerializeField] private float _speedRotation;
 
         private float _currentAngle = 0f;
         private bool _isMoving = false;
@@ -78,7 +76,7 @@ namespace Scripts.Blocks
         private Quaternion GetNewScalarRotation() 
         {
             Vector3 direction = _blockToMove.position - _previousPosition;
-            float angle = Math.Sign(direction.x) * _delta * Time.deltaTime;
+            float angle = Math.Sign(direction.x) * _speedRotation * Time.deltaTime;
             return Quaternion.Euler(0f, 0f, angle);
         }
 

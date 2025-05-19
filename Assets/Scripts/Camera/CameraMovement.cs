@@ -9,6 +9,7 @@ namespace Script.Camera
 
         private float _lastYPosition;
 
+        #region private
         void Update()
         {
             
@@ -18,5 +19,6 @@ namespace Script.Camera
             }
             _lastYPosition = _objectToFollow.position.y;
         }
+        #endregion private
     }
 }

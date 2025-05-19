@@ -92,7 +92,6 @@ namespace Scripts.Blocks
 
         private void ReleaseObject(float distance) 
         {
-            Debug.Log("ReleaseObject: ");
             Rigidbody rg = _blockToMove.GetComponent<Rigidbody>();
             rg.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rg.useGravity = true;
