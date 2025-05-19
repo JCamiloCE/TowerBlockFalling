@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public class FallMovementImplTransform : MonoBehaviour, IFallMovement
+    public class FallMovementImplTransform : MonoBehaviour, IBlockFallMovement
     {
         [SerializeField] private float _fallingTime = 2f;
         [SerializeField] private float _deltaSize = 0.5f;

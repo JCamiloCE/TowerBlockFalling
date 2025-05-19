@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 { 
-    public interface IMovement : ILifeCycle
+    public interface IBlockMovement : ILifeCycle
     {
         public void StartMovement();
         public void StopMovement();

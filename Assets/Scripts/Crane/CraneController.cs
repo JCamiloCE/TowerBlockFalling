@@ -12,8 +12,8 @@ namespace Scripts.Crane
         [SerializeField] private GameObject _initialBlock = null;
         [SerializeField] private BuildingController _buildingController = null;
 
-        private IMovement _craneMovement = null;
-        private IFallMovement _fallMovement = null;
+        private IBlockMovement _craneMovement = null;
+        private IBlockFallMovement _fallMovement = null;
         private IPoolController<BlockMonobehavior> _poolController = null;
         private BlockMonobehavior _currentBlock = null;
 
@@ -56,7 +56,7 @@ namespace Scripts.Crane
 
         private void ConfigureCraneMovement() 
         {
-            _craneMovement = GetComponent<IMovement>();
+            _craneMovement = GetComponent<IBlockMovement>();
             _craneMovement.Initialization();
             _craneMovement.SetNewChildToMove(_currentBlock.transform);
             _craneMovement.StartMovement();
@@ -64,7 +64,7 @@ namespace Scripts.Crane
 
         private void ConfigureFallMovement() 
         {
-            _fallMovement = GetComponent<IFallMovement>();
+            _fallMovement = GetComponent<IBlockFallMovement>();
             _fallMovement.Initialization();
         }
 

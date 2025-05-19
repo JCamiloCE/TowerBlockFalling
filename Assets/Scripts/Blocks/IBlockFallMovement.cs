@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public interface IFallMovement : ILifeCycle
+    public interface IBlockFallMovement : ILifeCycle
     {
         public void StartFalling(Transform newFallingObject);
     }

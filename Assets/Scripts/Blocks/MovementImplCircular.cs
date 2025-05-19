@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public class MovementImplCircular : MonoBehaviour, IMovement
+    public class MovementImplCircular : MonoBehaviour, IBlockMovement
     {
         [SerializeField] private float _radiusX = 3f;        
         [SerializeField] private float _radiusY = 3f;        
