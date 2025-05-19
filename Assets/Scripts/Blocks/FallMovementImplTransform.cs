@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public class FallMovementImplTransform : MonoBehaviour, IFallMovement
+    public class FallMovementImplTransform : MonoBehaviour, IBlockFallMovement
     {
         [SerializeField] private float _fallingTime = 2f;
         [SerializeField] private float _deltaSize = 0.5f;
@@ -92,7 +92,6 @@ namespace Scripts.Blocks
 
         private void ReleaseObject(float distance) 
         {
-            Debug.Log("ReleaseObject: ");
             Rigidbody rg = _blockToMove.GetComponent<Rigidbody>();
             rg.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rg.useGravity = true;

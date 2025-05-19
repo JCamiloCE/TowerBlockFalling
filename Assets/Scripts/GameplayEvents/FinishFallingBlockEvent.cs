@@ -7,6 +7,7 @@ namespace Scripts.GameplayEvents
     {
         public bool correctFalling = false;
         public Vector3 newTargetPos = Vector3.zero;
+
         public override void SetParameters(params object[] parameters) 
         {
             correctFalling = (bool)parameters[0];

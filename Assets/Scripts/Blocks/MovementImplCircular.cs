@@ -1,9 +1,10 @@
 using JCC.Utils.DebugManager;
+using System;
 using UnityEngine;
 
 namespace Scripts.Blocks
 {
-    public class MovementImplCircular : MonoBehaviour, IMovement
+    public class MovementImplCircular : MonoBehaviour, IBlockMovement
     {
         [SerializeField] private float _radiusX = 3f;        
         [SerializeField] private float _radiusY = 3f;        
@@ -12,9 +13,7 @@ namespace Scripts.Blocks
         [SerializeField] private Transform _blockToMove = null;
         [SerializeField] private Transform _hook;
         [SerializeField] private LineRenderer _lineRenderer = null;
-        [SerializeField] private float _minValue;
-        [SerializeField] private float _maxValue;
-        [SerializeField] private float _delta;
+        [SerializeField] private float _speedRotation;
 
         private float _currentAngle = 0f;
         private bool _isMoving = false;
@@ -59,7 +58,7 @@ namespace Scripts.Blocks
             if (_isMoving && WasInitialized())
             {
                 _blockToMove.position = GetNewPosition();
-                _blockToMove.rotation = GetNewRotation();
+                _blockToMove.rotation *= GetNewScalarRotation();
                 SetPositionsInLineRender();
             }
         }
@@ -74,13 +73,11 @@ namespace Scripts.Blocks
             return _pivotPoint.position + new Vector3(x, -y, 0);
         }
 
-        private Quaternion GetNewRotation() 
+        private Quaternion GetNewScalarRotation() 
         {
             Vector3 direction = _blockToMove.position - _previousPosition;
-            float angleZ = Mathf.Clamp(-direction.x * _delta * Time.deltaTime, _minValue, _maxValue);
-            _previousPosition = _blockToMove.position;
-
-            return Quaternion.Euler(0, 0, angleZ);
+            float angle = Math.Sign(direction.x) * _speedRotation * Time.deltaTime;
+            return Quaternion.Euler(0f, 0f, angle);
         }
 
         private void SetInitialValues() 
