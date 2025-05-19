@@ -33,6 +33,11 @@ namespace Scripts.Crane
             ConfigureFallMovement();
         }
 
+        private void OnDestroy()
+        {
+            EventManager.RemoveListener(this);
+        }
+
         private void Update()
         {
             if (Input.GetMouseButtonDown(0) && _currentBlock != null)
