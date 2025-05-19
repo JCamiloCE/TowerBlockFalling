@@ -12,15 +12,25 @@ namespace Scripts.Crane
         [SerializeField] private GameObject _initialBlock = null;
         [SerializeField] private BuildingController _buildingController = null;
 
-        private IBlockMovement _craneMovement = null;
+        private IBlockMovement _blockMovement = null;
         private IBlockFallMovement _fallMovement = null;
+        private ICraneMovement _craneMovement = null;
         private IPoolController<BlockMonobehavior> _poolController = null;
         private BlockMonobehavior _currentBlock = null;
+        private int _currentBlockIndex = 0;
 
         #region IEventListener
         public void OnEvent(FinishFallingBlockEvent event_data)
         {
-            SetNewBlockToTheCrane();
+            _currentBlockIndex++;
+            if (_currentBlockIndex > 2)
+            {
+                _craneMovement.MoveUp();
+            }
+            else 
+            {
+                SetNewBlockToTheCrane();
+            }
         }
         #endregion
 
@@ -29,8 +39,9 @@ namespace Scripts.Crane
         {
             EventManager.AddListener(this);
             CreatePoolForBlocks();
-            ConfigureCraneMovement();
+            ConfigureBlockMovement();
             ConfigureFallMovement();
+            ConfigureCraneMovement();
         }
 
         private void OnDestroy()
@@ -54,18 +65,25 @@ namespace Scripts.Crane
             _currentBlock = _poolController.GetPoolObject();
         }
 
-        private void ConfigureCraneMovement() 
+        private void ConfigureBlockMovement() 
         {
-            _craneMovement = GetComponent<IBlockMovement>();
-            _craneMovement.Initialization();
-            _craneMovement.SetNewChildToMove(_currentBlock.transform);
-            _craneMovement.StartMovement();
+            _blockMovement = GetComponent<IBlockMovement>();
+            _blockMovement.Initialization();
+            _blockMovement.SetNewChildToMove(_currentBlock.transform);
+            _blockMovement.StartMovement();
         }
 
         private void ConfigureFallMovement() 
         {
             _fallMovement = GetComponent<IBlockFallMovement>();
             _fallMovement.Initialization();
+        }
+
+        private void ConfigureCraneMovement() 
+        {
+            _craneMovement = GetComponent<ICraneMovement>();
+            _craneMovement.Initialization(transform);
+            _craneMovement.SetCallBackEndMovement(SetNewBlockToTheCrane);
         }
 
         private void StartFalling() 
@@ -77,7 +95,7 @@ namespace Scripts.Crane
         private void SetNewBlockToTheCrane() 
         {
             _currentBlock = _poolController.GetPoolObject();
-            _craneMovement.SetNewChildToMove(_currentBlock.transform);
+            _blockMovement.SetNewChildToMove(_currentBlock.transform);
         }
         #endregion private
     }
