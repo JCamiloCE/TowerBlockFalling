@@ -1,7 +1,6 @@
 using JCC.Utils.GameplayEventSystem;
 using JCC.Utils.Pool;
 using Emc2.Scripts.Blocks;
-using Emc2.Scripts.Building;
 using Emc2.Scripts.GameplayEvents;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace Emc2.Scripts.Crane
     public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>
     {
         [SerializeField] private GameObject _initialBlock = null;
-        [SerializeField] private BuildingController _buildingController = null;
 
         private IBlockMovement _blockMovement = null;
         private IBlockFallMovement _fallMovement = null;

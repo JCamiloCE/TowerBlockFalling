@@ -1,8 +1,10 @@
 {
-    "name": "Scripts.GameplayEvents",
+    "name": "Emc2.Scripts.Effects",
     "rootNamespace": "",
     "references": [
-        "GUID:4a81140d601cf6f4fb9f486ccead3eba"
+        "GUID:5334b4cb42914124490f638f8c335482",
+        "GUID:4a81140d601cf6f4fb9f486ccead3eba",
+        "GUID:0e2b5d6ef58cd4142aebe95bcdfa1fe7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
