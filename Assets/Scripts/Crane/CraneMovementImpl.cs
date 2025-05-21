@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Crane
+namespace Emc2.Scripts.Crane
 {
     public class CraneMovementImpl : MonoBehaviour, ICraneMovement
     {

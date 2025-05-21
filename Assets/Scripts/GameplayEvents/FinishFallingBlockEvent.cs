@@ -1,7 +1,7 @@
 using JCC.Utils.GameplayEventSystem;
 using UnityEngine;
 
-namespace Scripts.GameplayEvents
+namespace Emc2.Scripts.GameplayEvents
 {
     public class FinishFallingBlockEvent : EventBase
     {

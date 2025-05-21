@@ -1,8 +1,8 @@
 using JCC.Utils.GameplayEventSystem;
-using Scripts.GameplayEvents;
+using Emc2.Scripts.GameplayEvents;
 using UnityEngine;
 
-namespace Scripts.Building
+namespace Emc2.Scripts.Building
 {
     public class BuildingController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>
     {

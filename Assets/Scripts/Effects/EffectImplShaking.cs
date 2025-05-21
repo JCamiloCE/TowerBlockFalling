@@ -1,10 +1,10 @@
 using JCC.Utils.GameplayEventSystem;
 using JCC.Utils.Random;
-using Scripts.GameplayEvents;
+using Emc2.Scripts.GameplayEvents;
 using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Effects
+namespace Emc2.Scripts.Effects
 {
     public class EffectImplShaking : MonoBehaviour, IEffect, IEventListener<FinishFallingBlockEvent>
     {

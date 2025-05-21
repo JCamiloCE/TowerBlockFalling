@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Camera 
+namespace Emc2.Script.Camera 
 {
     public class CameraMovement : MonoBehaviour
     {

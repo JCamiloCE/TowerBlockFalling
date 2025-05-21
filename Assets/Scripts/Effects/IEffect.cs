@@ -1,4 +1,4 @@
-namespace Scripts.Effects
+namespace Emc2.Scripts.Effects
 {
     public interface IEffect
     {
