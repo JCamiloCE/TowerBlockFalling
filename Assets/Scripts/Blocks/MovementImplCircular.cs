@@ -2,7 +2,7 @@ using JCC.Utils.DebugManager;
 using System;
 using UnityEngine;
 
-namespace Scripts.Blocks
+namespace Emc2.Scripts.Blocks
 {
     public class MovementImplCircular : MonoBehaviour, IBlockMovement
     {
