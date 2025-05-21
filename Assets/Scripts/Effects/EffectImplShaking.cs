@@ -1,6 +1,6 @@
 using JCC.Utils.GameplayEventSystem;
 using JCC.Utils.Random;
-using Scripts.GameplayEvents;
+using Emc2.Scripts.GameplayEvents;
 using System.Collections;
 using UnityEngine;
 

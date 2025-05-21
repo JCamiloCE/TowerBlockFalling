@@ -1,5 +1,5 @@
 using JCC.Utils.GameplayEventSystem;
-using Scripts.GameplayEvents;
+using Emc2.Scripts.GameplayEvents;
 using UnityEngine;
 
 namespace Emc2.Scripts.Building
