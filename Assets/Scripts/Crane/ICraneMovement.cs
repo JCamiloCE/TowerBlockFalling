@@ -1,7 +1,7 @@
 using JCC.Utils.LifeCycle;
 using System;
 
-namespace Scripts.Crane
+namespace Emc2.Scripts.Crane
 {
     public interface ICraneMovement : ILifeCycle
     {

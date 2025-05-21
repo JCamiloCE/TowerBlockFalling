@@ -5,7 +5,7 @@ using Scripts.Building;
 using Scripts.GameplayEvents;
 using UnityEngine;
 
-namespace Scripts.Crane 
+namespace Emc2.Scripts.Crane 
 {
     public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>
     {

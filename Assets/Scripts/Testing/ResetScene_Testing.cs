@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Scripts.Testing 
+namespace Emc2.Scripts.Testing 
 {
     public class ResetScene_Testing : MonoBehaviour
     {
