@@ -4,7 +4,7 @@ using Scripts.GameplayEvents;
 using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Effects
+namespace Emc2.Scripts.Effects
 {
     public class EffectImplShaking : MonoBehaviour, IEffect, IEventListener<FinishFallingBlockEvent>
     {
