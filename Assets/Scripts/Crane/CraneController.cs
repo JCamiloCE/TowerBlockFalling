@@ -63,7 +63,7 @@ namespace Emc2.Scripts.Crane
         private void CreatePoolForBlocks() 
         {
             _poolController = new PoolControllerImpl<BlockMonobehavior>();
-            _poolController.SetPoolObject(_initialBlock, 20, true);
+            _poolController.SetPoolObject(_initialBlock, 10, true);
             _initialBlock.SetActive(false);
             _currentBlock = _poolController.GetPoolObject();
         }
@@ -103,7 +103,9 @@ namespace Emc2.Scripts.Crane
             _usedBlocks.Add(_currentBlock);
             if (_usedBlocks.Count > 5) 
             {
+                BlockMonobehavior currentBlock = _usedBlocks[0];
                 _usedBlocks.RemoveAt(0);
+                _poolController.ReturnToPool(currentBlock);
             }
         }
 

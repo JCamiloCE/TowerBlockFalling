@@ -10,7 +10,6 @@ namespace Emc2.Scripts.Building
         [SerializeField] private Transform _transformToRotate = null;
         [SerializeField] private float _sizeBlock = 1f;
         [SerializeField] private float _maxAngleToRotate = 2f;
-
         [SerializeField] private float _speed = 1f;
 
         private float _minAngle = 0f;
@@ -60,10 +59,12 @@ namespace Emc2.Scripts.Building
                 if (distance > 0)
                 {
                     _maxAngle += distance;
+                    _maxAngle = Mathf.Clamp(_maxAngle, 0, _maxAngleToRotate);
                 }
                 else 
                 {
                     _minAngle += distance;
+                    _minAngle = Mathf.Clamp(_minAngle, -_maxAngleToRotate, 0);
                 }
             }
         }
