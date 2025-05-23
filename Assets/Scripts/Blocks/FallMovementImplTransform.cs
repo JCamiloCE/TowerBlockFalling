@@ -3,6 +3,7 @@ using JCC.Utils.GameplayEventSystem;
 using Emc2.Scripts.GameplayEvents;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace Emc2.Scripts.Blocks
 {
@@ -60,8 +61,6 @@ namespace Emc2.Scripts.Blocks
 
         private IEnumerator FallingMovement() 
         {
-            _blockToMove.SetParent(null);
-            _blockToMove.rotation = Quaternion.identity;
             Vector3 currentTarget = new Vector3(_blockToMove.position.x, _target.position.y + _deltaSize, _target.position.z);
             Vector3 startPos = _blockToMove.position;
             float currentTime = 0f;
@@ -82,8 +81,9 @@ namespace Emc2.Scripts.Blocks
         {
             Vector3 targetPos = new Vector3(_target.position.x, _target.position.y + _deltaSize, _target.position.z);
             float currentDistance = Vector3.Distance(_blockToMove.position, targetPos);
+            float distanceWithSign = currentDistance * Math.Sign((_blockToMove.position - targetPos).x);
             bool fit = currentDistance <= _distanceToFit;
-            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, _blockToMove.position);
+            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, _blockToMove.position, distanceWithSign);
             if (_firstInFall == false && fit == false) 
             {
                 ReleaseObject(currentDistance);
@@ -92,6 +92,7 @@ namespace Emc2.Scripts.Blocks
 
         private void ReleaseObject(float distance) 
         {
+            _blockToMove.SetParent(null);
             Rigidbody rg = _blockToMove.GetComponent<Rigidbody>();
             rg.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rg.useGravity = true;
@@ -102,11 +103,11 @@ namespace Emc2.Scripts.Blocks
 
         private void StopDeactivateBlock()
         {
-            if (_fallingMovement != null)
+            if (_deactivateBlock != null)
             {
-                StopCoroutine(_fallingMovement);
+                StopCoroutine(_deactivateBlock);
             }
-            _fallingMovement = null;
+            _deactivateBlock = null;
         }
 
         private IEnumerator DeactivateBlock(Transform block)
