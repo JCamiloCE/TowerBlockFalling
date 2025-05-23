@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8008fbf74508a042a5e59696fa8aba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radiusX: 1
+  _radiusX: 0.8
   _radiusY: 0.5
   _angularSpeed: 1.5
   _pivotPoint: {fileID: 1755095953}
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deltaToMove: 1
-  _moveTime: 1
+  _moveTime: 0.5
 --- !u!1 &1154833235
 GameObject:
   m_ObjectHideFlags: 0
