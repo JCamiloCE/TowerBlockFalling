@@ -3,17 +3,21 @@ using JCC.Utils.Pool;
 using Emc2.Scripts.Blocks;
 using Emc2.Scripts.GameplayEvents;
 using UnityEngine;
+using Emc2.Scripts.Building;
+using System.Collections.Generic;
 
 namespace Emc2.Scripts.Crane 
 {
     public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>
     {
-        [SerializeField] private GameObject _initialBlock = null;
+        [SerializeField] private GameObject _initialBlock = null; 
+        [SerializeField] private BuildingController _buildingController = null;
 
         private IBlockMovement _blockMovement = null;
         private IBlockFallMovement _fallMovement = null;
         private ICraneMovement _craneMovement = null;
         private IPoolController<BlockMonobehavior> _poolController = null;
+        private List<BlockMonobehavior> _usedBlocks = new List<BlockMonobehavior>();
         private BlockMonobehavior _currentBlock = null;
         private int _currentBlockIndex = 0;
 
@@ -87,8 +91,20 @@ namespace Emc2.Scripts.Crane
 
         private void StartFalling() 
         {
+            RefreshUsedBlocks();
             _fallMovement.StartFalling(_currentBlock.transform);
             _currentBlock = null;
+        }
+
+        private void RefreshUsedBlocks() 
+        {
+            _currentBlock.transform.SetParent(_buildingController.GetTransformToRotate());
+            _currentBlock.transform.rotation = Quaternion.identity;
+            _usedBlocks.Add(_currentBlock);
+            if (_usedBlocks.Count > 5) 
+            {
+                _usedBlocks.RemoveAt(0);
+            }
         }
 
         private void SetNewBlockToTheCrane() 
