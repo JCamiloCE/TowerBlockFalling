@@ -92,6 +92,7 @@ namespace Emc2.Scripts.Blocks
 
         private void ReleaseObject(float distance) 
         {
+            _blockToMove.SetParent(null);
             Rigidbody rg = _blockToMove.GetComponent<Rigidbody>();
             rg.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             rg.useGravity = true;

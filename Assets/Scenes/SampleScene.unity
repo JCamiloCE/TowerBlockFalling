@@ -849,6 +849,7 @@ MonoBehaviour:
   _sizeBlock: 0.5
   _maxAngleToRotate: 2
   _speed: 1
+  _deltaY: 5
 --- !u!1 &1112466902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,8 +1211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1212539794}
   - component: {fileID: 1212539795}
-  - component: {fileID: 1212539798}
   - component: {fileID: 1212539799}
+  - component: {fileID: 1212539798}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -1268,6 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dd9826382ae1d468b263735d5a2883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rg: {fileID: 1212539799}
 --- !u!54 &1212539799
 Rigidbody:
   m_ObjectHideFlags: 0
