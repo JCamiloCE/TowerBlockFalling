@@ -883,6 +883,8 @@ MonoBehaviour:
   _maxAngleToRotate: 2
   _speed: 1
   _deltaY: 5
+  _perfectBlocksToReduce: 4
+  _distanceToReduceInPerfect: 0.15
 --- !u!114 &641550338
 MonoBehaviour:
   m_ObjectHideFlags: 0
