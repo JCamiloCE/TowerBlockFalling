@@ -24,6 +24,11 @@ namespace Emc2.Scripts.Effects
             StopShakingEffect();
             _shake = StartCoroutine(Shake());
         }
+
+        public void StopEffect() 
+        {
+            //NOOP
+        }
         #endregion
 
         #region IEventListener

@@ -97,6 +97,7 @@ namespace Emc2.Scripts.Blocks
                 {
                     distanceWithSign = 0;
                     _blockToMove.position = targetPos;
+                    EventManager.TriggerEvent<PerfectBlockFalledEvent>();
                 }
             }
             else 

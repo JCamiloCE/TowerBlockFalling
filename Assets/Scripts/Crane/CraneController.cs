@@ -105,6 +105,7 @@ namespace Emc2.Scripts.Crane
         private void SetNewBlockToTheCrane() 
         {
             _currentBlock = _poolController.GetPoolObject();
+            _currentBlock.RegisterEventPerfect();
             _blockMovement.SetNewChildToMove(_currentBlock.transform);
             _isFalling = false;
         }
