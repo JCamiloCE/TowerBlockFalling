@@ -73,6 +73,7 @@ namespace Emc2.Scripts.Crane
             _poolController.SetPoolObject(_initialBlock, 10, true);
             _initialBlock.SetActive(false);
             _currentBlock = _poolController.GetPoolObject();
+            _currentBlock.RegisterEventPerfect();
         }
 
         private void ConfigureBlockMovement() 
@@ -106,6 +107,10 @@ namespace Emc2.Scripts.Crane
         {
             _currentBlock = _poolController.GetPoolObject();
             _currentBlock.RegisterEventPerfect();
+            if (_buildingController.GetIsInPerfectTime())
+            {
+                _currentBlock.ForcePerfectEffect();
+            }
             _blockMovement.SetNewChildToMove(_currentBlock.transform);
             _isFalling = false;
         }

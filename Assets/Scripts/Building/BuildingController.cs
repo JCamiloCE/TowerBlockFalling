@@ -9,6 +9,7 @@ namespace Emc2.Scripts.Building
     {
         [SerializeField] private Transform _targetPos = null;
         [SerializeField] private Transform _transformToRotate = null;
+        [SerializeField] private BuildingPerfectController _buildingPerfect = null;
         [SerializeField] private float _sizeBlock = 1f;
         [SerializeField] private float _maxAngleToRotate = 2f;
         [SerializeField] private float _speed = 1f;
@@ -19,6 +20,7 @@ namespace Emc2.Scripts.Building
         private int _currentBlock = 0;
 
         public Vector3 GetTargetPosition() => _targetPos.position;
+        public bool GetIsInPerfectTime() => _buildingPerfect.IsInPerfectTime;
 
         #region IEventListener
         public void OnEvent(FinishFallingBlockEvent event_data)

@@ -9,6 +9,8 @@ public class BuildingPerfectController : MonoBehaviour, IEventListener<PerfectBl
     private bool _isInPerfectTime = false;
     private float _timeLastPerfect = 0;
 
+    public bool IsInPerfectTime => _isInPerfectTime;
+
     #region IEventListener
     public void OnEvent(PerfectBlockFalledEvent event_data)
     {

@@ -24,6 +24,11 @@ namespace Emc2.Scripts.Blocks
         #endregion IPoolResettable
 
         #region public
+        public void ForcePerfectEffect() 
+        {
+            _effectPerfect.StartEffect();
+        }
+
         public void RegisterEventPerfect() 
         {
             _effectPerfect.RegisterEvent();

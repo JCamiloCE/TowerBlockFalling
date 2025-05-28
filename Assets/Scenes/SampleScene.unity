@@ -878,6 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPos: {fileID: 276361580}
   _transformToRotate: {fileID: 1462362326}
+  _buildingPerfect: {fileID: 641550338}
   _sizeBlock: 0.5
   _maxAngleToRotate: 2
   _speed: 1
