@@ -939,6 +939,7 @@ MonoBehaviour:
   _deltaSize: 0.5
   _distanceToFit: 0.5
   _forceWhenNotFit: 5
+  _distanceToPerfect: 0.1
   _target: {fileID: 276361580}
 --- !u!114 &1112466907
 MonoBehaviour:

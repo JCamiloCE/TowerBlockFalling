@@ -13,6 +13,7 @@ namespace Emc2.Scripts.Blocks
         [SerializeField] private float _deltaSize = 0.5f;
         [SerializeField] private float _distanceToFit = 0.5f;
         [SerializeField] private float _forceWhenNotFit = 5f;
+        [SerializeField] private float _distanceToPerfect = 0.1f;
         [SerializeField] private Transform _target = null;
 
         private Transform _blockToMove = null;
@@ -72,7 +73,14 @@ namespace Emc2.Scripts.Blocks
                 yield return null;
             }
             _blockToMove.position = currentTarget;
-            FitWithTheTarget();
+            if (_firstInFall)
+            {
+                SendFinishFallingEvent(true, _blockToMove.position, 0f);
+            }
+            else 
+            {
+                FitWithTheTarget();
+            }
             _firstInFall = false;
             _fallingMovement = null;
         }
@@ -83,11 +91,24 @@ namespace Emc2.Scripts.Blocks
             float currentDistance = Vector3.Distance(_blockToMove.position, targetPos);
             float distanceWithSign = currentDistance * Math.Sign((_blockToMove.position - targetPos).x);
             bool fit = currentDistance <= _distanceToFit;
-            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, _blockToMove.position, distanceWithSign);
-            if (_firstInFall == false && fit == false) 
+            if (fit)
+            {
+                if (currentDistance <= _distanceToPerfect) 
+                {
+                    distanceWithSign = 0;
+                    _blockToMove.position = targetPos;
+                }
+            }
+            else 
             {
                 ReleaseObject(currentDistance);
             }
+            SendFinishFallingEvent(fit, _blockToMove.position, distanceWithSign);
+        }
+
+        private void SendFinishFallingEvent(bool fit, Vector3 newPosition, float distanceWithSign) 
+        {
+            EventManager.TriggerEvent<FinishFallingBlockEvent>(true, _blockToMove.position, 0f);
         }
 
         private void ReleaseObject(float distance) 
