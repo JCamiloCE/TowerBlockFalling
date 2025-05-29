@@ -57,8 +57,8 @@ namespace Emc2.Scripts.Blocks
         {
             if (_isMoving && WasInitialized())
             {
-                _blockToMove.position = GetNewPosition();
-                _blockToMove.rotation *= GetNewScalarRotation();
+                //_blockToMove.position = GetNewPosition();
+                //_blockToMove.rotation *= GetNewScalarRotation();
                 SetPositionsInLineRender();
             }
         }

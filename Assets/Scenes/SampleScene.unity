@@ -689,11 +689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakeObj: {fileID: 330585546}
-  _minXShake: -0.03
-  _maxXShake: 0.03
-  _minYShake: -0.03
-  _maxYShake: 0.03
-  _shakeTime: 0.1
+  _minXShake: -0.05
+  _maxXShake: 0.05
+  _minYShake: -0.05
+  _maxYShake: 0.05
+  _shakeTime: 0.2
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,7 +880,7 @@ MonoBehaviour:
   _transformToRotate: {fileID: 1462362326}
   _buildingPerfect: {fileID: 641550338}
   _sizeBlock: 0.5
-  _maxAngleToRotate: 2
+  _maxAngleToRotate: 1.5
   _speed: 1
   _deltaY: 5
   _perfectBlocksToReduce: 4
@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 1112466903}
   - component: {fileID: 1112466906}
   - component: {fileID: 1112466907}
+  - component: {fileID: 1112466908}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -1003,6 +1004,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deltaToMove: 1
   _moveTime: 0.5
+  _delayToStart: 0.3
+--- !u!95 &1112466908
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112466902}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ed01245eb739154dbdc6eb19d568ddc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1154833235
 GameObject:
   m_ObjectHideFlags: 0

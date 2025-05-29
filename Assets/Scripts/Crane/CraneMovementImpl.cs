@@ -9,6 +9,7 @@ namespace Emc2.Scripts.Crane
     {
         [SerializeField] private float _deltaToMove = 1f;
         [SerializeField] private float _moveTime = 1f;
+        [SerializeField] private float _delayToStart = 1f;
 
         private bool _wasInitialized = false;
         private Coroutine _moveCoroutine = null;
@@ -57,6 +58,7 @@ namespace Emc2.Scripts.Crane
             Vector3 currentTarget = new Vector3(_craneToMove.position.x, _craneToMove.position.y + _deltaToMove, _craneToMove.position.z);
             Vector3 startPos = _craneToMove.position;
             float currentTime = 0f;
+            yield return new WaitForSeconds(_delayToStart);
             while (currentTime < _moveTime)
             {
                 Vector3 newPos = Vector3.Lerp(startPos, currentTarget, currentTime / _moveTime);
