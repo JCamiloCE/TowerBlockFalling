@@ -9,16 +9,21 @@ namespace Emc2.Scripts.Building
     {
         [SerializeField] private Transform _targetPos = null;
         [SerializeField] private Transform _transformToRotate = null;
+        [SerializeField] private BuildingPerfectController _buildingPerfect = null;
         [SerializeField] private float _sizeBlock = 1f;
         [SerializeField] private float _maxAngleToRotate = 2f;
         [SerializeField] private float _speed = 1f;
         [SerializeField] private float _deltaY = 1f;
+        [SerializeField] private int _perfectBlocksToReduce = 4;
+        [SerializeField] private float _distanceToReduceInPerfect = 0.05f;
 
         private float _minAngle = 0f;
         private float _maxAngle = 0f;
         private int _currentBlock = 0;
+        private int _currentPerfectBlocks = 0;
 
         public Vector3 GetTargetPosition() => _targetPos.position;
+        public bool GetIsInPerfectTime() => _buildingPerfect.IsInPerfectTime;
 
         #region IEventListener
         public void OnEvent(FinishFallingBlockEvent event_data)
@@ -27,7 +32,22 @@ namespace Emc2.Scripts.Building
             {
                 _currentBlock++;
                 _targetPos.position = new Vector3(event_data.newTargetPos.x, event_data.newTargetPos.y + _sizeBlock, event_data.newTargetPos.z);
-                AddBalance(event_data.distanceToLastBlock);
+                if (!event_data.perfectFalling)
+                {
+                    AddBalance(event_data.distanceToLastBlock);
+                    _currentPerfectBlocks = 0;
+                }
+                else 
+                {
+                    _currentPerfectBlocks++;
+                    if (_currentPerfectBlocks > _perfectBlocksToReduce) 
+                    {
+                        _maxAngle -= _distanceToReduceInPerfect;
+                        _maxAngle = Mathf.Clamp(_maxAngle, 0, _maxAngleToRotate);
+                        _minAngle += _distanceToReduceInPerfect;
+                        _minAngle = Mathf.Clamp(_minAngle, -_maxAngleToRotate, 0);
+                    }
+                }
             }
         }
         #endregion
