@@ -38,8 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Buildings
+  - name: Buildings_Back
     uniqueID: 407002801
+    locked: 0
+  - name: Building_Front
+    uniqueID: 2197144689
     locked: 0
   - name: Default
     uniqueID: 0
