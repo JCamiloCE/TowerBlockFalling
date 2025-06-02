@@ -75,7 +75,7 @@ namespace Emc2.Scripts.Blocks
             _blockToMove.position = currentTarget;
             if (_firstInFall)
             {
-                SendFinishFallingEvent(true, true, _blockToMove.position, 0f);
+                SendFinishFallingEvent(true, true, _blockToMove, 0f);
             }
             else 
             {
@@ -106,12 +106,12 @@ namespace Emc2.Scripts.Blocks
             {
                 ReleaseObject(currentDistance);
             }
-            SendFinishFallingEvent(fit, perfect, _blockToMove.position, distanceWithSign);
+            SendFinishFallingEvent(fit, perfect, _blockToMove, distanceWithSign);
         }
 
-        private void SendFinishFallingEvent(bool fit, bool perfect, Vector3 newPosition, float distanceWithSign) 
+        private void SendFinishFallingEvent(bool fit, bool perfect, Transform block, float distanceWithSign) 
         {
-            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, perfect, newPosition, distanceWithSign);
+            EventManager.TriggerEvent<FinishFallingBlockEvent>(fit, perfect, block, distanceWithSign);
         }
 
         private void ReleaseObject(float distance) 

@@ -7,14 +7,14 @@ namespace Emc2.Scripts.GameplayEvents
     {
         public bool correctFalling = false;
         public bool perfectFalling = false;
-        public Vector3 newTargetPos = Vector3.zero;
+        public Transform newBlock = null;
         public float distanceToLastBlock = 0;
 
         public override void SetParameters(params object[] parameters) 
         {
             correctFalling = (bool)parameters[0];
             perfectFalling = (bool)parameters[1];
-            newTargetPos = (Vector3)parameters[2];
+            newBlock = (Transform)parameters[2];
             distanceToLastBlock = (float)parameters[3];
         }
     }
