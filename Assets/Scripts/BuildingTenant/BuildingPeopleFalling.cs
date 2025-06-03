@@ -45,6 +45,11 @@ namespace Emc2.Scripts.BuildingTenant
             _random = new RandomUnity();
         }
 
+        private void OnDestroy()
+        {
+            EventManager.RemoveListener(this);
+        }
+
         private void ConfigurePool() 
         {
             _poolController = new PoolControllerImpl<TenantNpc>();

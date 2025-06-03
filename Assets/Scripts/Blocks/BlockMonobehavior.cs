@@ -34,5 +34,12 @@ namespace Emc2.Scripts.Blocks
             _effectPerfect.RegisterEvent();
         }
         #endregion public
+
+        #region
+        private void OnDestroy()
+        {
+            _effectPerfect?.UnregisterEvent();
+        }
+        #endregion
     }
 }
