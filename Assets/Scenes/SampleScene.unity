@@ -1057,7 +1057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &288359141
 Transform:
   m_ObjectHideFlags: 0
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToFollow: {fileID: 1112466905}
-  _deltaY: 1
+  _deltaY: 0
 --- !u!1 &372589119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,7 +1909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &528526291
 Transform:
   m_ObjectHideFlags: 0
@@ -2119,9 +2119,9 @@ MonoBehaviour:
   _transformToRotate: {fileID: 1462362326}
   _buildingPerfect: {fileID: 641550338}
   _sizeBlock: 0.5
-  _maxAngleToRotate: 1.5
+  _maxAngleToRotate: 15
   _speed: 1
-  _deltaY: 5
+  _deltaY: 1
   _perfectBlocksToReduce: 4
   _distanceToReduceInPerfect: 0.15
 --- !u!114 &641550338
@@ -2304,7 +2304,7 @@ Transform:
   m_GameObject: {fileID: 1112466902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2805,7 +2805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1392124888
 Transform:
   m_ObjectHideFlags: 0
@@ -8345,7 +8345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1869647634
 Transform:
   m_ObjectHideFlags: 0
@@ -8529,7 +8529,7 @@ Transform:
   m_GameObject: {fileID: 2118555449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: -2.1, z: 0}
+  m_LocalPosition: {x: 1.71, y: -1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

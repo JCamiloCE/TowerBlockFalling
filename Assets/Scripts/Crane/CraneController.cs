@@ -118,7 +118,7 @@ namespace Emc2.Scripts.Crane
         private void RefreshUsedBlocks()
         {
             _currentBlock.transform.SetParent(_buildingController.GetTransformToRotate());
-            _currentBlock.transform.rotation = Quaternion.identity;
+            _currentBlock.transform.localRotation = Quaternion.identity;
             _usedBlocks.Add(_currentBlock);
             if (_usedBlocks.Count > 5)
             {
