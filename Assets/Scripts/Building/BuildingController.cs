@@ -31,7 +31,7 @@ namespace Emc2.Scripts.Building
             if (event_data.correctFalling) 
             {
                 _currentBlock++;
-                _targetPos.position = new Vector3(event_data.newTargetPos.x, event_data.newTargetPos.y + _sizeBlock, event_data.newTargetPos.z);
+                _targetPos.position = new Vector3(event_data.newBlock.position.x, event_data.newBlock.position.y + _sizeBlock, event_data.newBlock.position.z);
                 if (!event_data.perfectFalling)
                 {
                     AddBalance(event_data.distanceToLastBlock);

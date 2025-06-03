@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Npc
+    uniqueID: 1022163125
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
