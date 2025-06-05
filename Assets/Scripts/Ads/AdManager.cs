@@ -27,9 +27,13 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener,
     private void Start()
     {
         EventManager.AddListener(this);
-        if (!Advertisement.isInitialized) 
+        if (!Advertisement.isInitialized)
         {
             Advertisement.Initialize(_gameID, _testMode, this);
+        }
+        else 
+        {
+            Invoke(nameof(LoadVideo), 3f);
         }
     }
 
