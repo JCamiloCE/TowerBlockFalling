@@ -10,7 +10,8 @@ namespace Emc2.Scripts.Crane
 {
     public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>, IEventListener<LoseGameEvent>
     {
-        [SerializeField] private GameObject _initialBlock = null; 
+        [SerializeField] private GameObject _prefabBlock = null; 
+        [SerializeField] private GameObject _initialBlock = null;
         [SerializeField] private BuildingController _buildingController = null;
 
         private IBlockMovement _blockMovement = null;
@@ -78,9 +79,10 @@ namespace Emc2.Scripts.Crane
         private void CreatePoolForBlocks() 
         {
             _poolController = new PoolControllerImpl<BlockMonobehavior>();
-            _poolController.SetPoolObject(_initialBlock, 10, true);
-            _initialBlock.SetActive(false);
-            _currentBlock = _poolController.GetPoolObject();
+            _poolController.SetPoolObject(_prefabBlock, 10, true);
+            _prefabBlock.SetActive(false);
+            //_currentBlock = _poolController.GetPoolObject();
+            _currentBlock = _initialBlock.GetComponent<BlockMonobehavior>();
             _currentBlock.RegisterEventPerfect();
         }
 
@@ -127,7 +129,10 @@ namespace Emc2.Scripts.Crane
         {
             _currentBlock.transform.SetParent(_buildingController.GetTransformToRotate());
             _currentBlock.transform.localRotation = Quaternion.identity;
-            _usedBlocks.Add(_currentBlock);
+            if (_currentBlockIndex > 0) 
+            {
+                _usedBlocks.Add(_currentBlock);
+            }
             if (_usedBlocks.Count > 5)
             {
                 BlockMonobehavior currentBlock = _usedBlocks[0];
