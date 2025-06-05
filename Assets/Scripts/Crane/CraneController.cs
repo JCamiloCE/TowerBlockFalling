@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Emc2.Scripts.Crane 
 {
-    public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>
+    public class CraneController : MonoBehaviour, IEventListener<FinishFallingBlockEvent>, IEventListener<LoseGameEvent>
     {
         [SerializeField] private GameObject _initialBlock = null; 
         [SerializeField] private BuildingController _buildingController = null;
@@ -22,6 +22,7 @@ namespace Emc2.Scripts.Crane
         private BlockMonobehavior _currentBlock = null;
         private int _currentBlockIndex = 0;
         private bool _isFalling = false;
+        private bool _IsAlive = true;
 
         #region IEventListener
         public void OnEvent(FinishFallingBlockEvent event_data)
@@ -42,12 +43,18 @@ namespace Emc2.Scripts.Crane
             }
             SetNewBlockToTheCrane();
         }
+
+        public void OnEvent(LoseGameEvent event_data)
+        {
+            _IsAlive = false;
+        }
         #endregion
 
         #region private
         private void Start()
         {
-            EventManager.AddListener(this);
+            EventManager.AddListener<FinishFallingBlockEvent>(this);
+            EventManager.AddListener<LoseGameEvent>(this);
             CreatePoolForBlocks();
             ConfigureBlockMovement();
             ConfigureFallMovement();
@@ -56,12 +63,13 @@ namespace Emc2.Scripts.Crane
 
         private void OnDestroy()
         {
-            EventManager.RemoveListener(this);
+            EventManager.RemoveListener<FinishFallingBlockEvent>(this);
+            EventManager.RemoveListener<LoseGameEvent>(this);
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !_isFalling)
+            if (_IsAlive && Input.GetMouseButtonDown(0) && !_isFalling)
             {
                 StartFalling();
             }

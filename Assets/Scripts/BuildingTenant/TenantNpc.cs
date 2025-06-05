@@ -30,14 +30,14 @@ namespace Emc2.Scripts.BuildingTenant
         public void StartMovement(Vector3 startPoint, Transform endPoint, Action endCb) 
         {
             _endCb = endCb;
-            ChangeSprites();
+            ChangeSprites(startPoint, endPoint);
             StopMovement();
             _moveCoroutine = StartCoroutine(MoveNpc(startPoint, endPoint));
         }
         #endregion public
 
         #region private
-        private void ChangeSprites() 
+        private void ChangeSprites(Vector3 startPoint, Transform endPoint) 
         {
             if (_random == null)
             {
@@ -45,6 +45,8 @@ namespace Emc2.Scripts.BuildingTenant
             }
             _body.sprite = _spritesBody[_random.GetRandomIndexInList(_spritesBody)];
             _balloon.sprite = _spritesBalloon[_random.GetRandomIndexInList(_spritesBalloon)];
+            int sing = (startPoint.x > endPoint.position.x) ? -1 : 1;
+            transform.localScale = new Vector3(1f * sing, 1f, 1f);
         }
 
         private void StopMovement()
